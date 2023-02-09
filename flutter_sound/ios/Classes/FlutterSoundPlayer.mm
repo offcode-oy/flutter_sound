@@ -125,7 +125,7 @@
     flautoPlayer = [ [FlautoPlayer alloc] init: self];
     flutterSoundPlayerManager = pm;
     
-    bool voiceProcessing = (bool)call.arguments[@"voiceProcessing"];
+    bool voiceProcessing = [[call.arguments objectForKey:@"voiceProcessing"] boolValue];
     [flautoPlayer setVoiceProcessing: voiceProcessing];
     
     
@@ -135,6 +135,10 @@
     {
         [flautoPlayer initEqualizer: arguments];
     }
+    
+    // Init speaker
+    bool loudSpeakerOn = [[call.arguments objectForKey:@"setLoudSpeakerOn"] boolValue];
+    [flautoPlayer setLoudSpeakerOn: loudSpeakerOn];
     
     
     return [super init: call]; // Init Session
@@ -165,6 +169,16 @@
     result(status);
     [self log: DBG msg: @"IOS:<-- darwinEqualizerBandSetGain"];
 }
+
+//- (void)darwinSetloudSpeakerOn: (FlutterMethodCall*)call result: (FlutterResult)result
+//{
+//    [self log: DBG msg: @"IOS:---> darwinSetloudSpeakerOn"];
+//    BOOL isLoudSpeaker = [[call.arguments objectForKey:@"isLoudSpeaker"] boolValue];
+//    [flautoPlayer setLoudSpeakerOn: isLoudSpeaker];
+//    NSNumber* status = [self getPlayerStatus];
+//    result(status);
+//    [self log: DBG msg: @"IOS:<-- darwinSetloudSpeakerOn"];
+//}
 
 
 - (void)isDecoderSupported:(t_CODEC)codec result: (FlutterResult)result

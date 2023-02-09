@@ -224,7 +224,10 @@ class FlutterSoundPlayerWeb extends FlutterSoundPlayerPlatform //implements Flut
 
   @override
   Future<int> openPlayer(FlutterSoundPlayerCallback callback,
-      {required Level logLevel, bool voiceProcessing = false, InitDarwinEqualizerRequest? equalizerParams}) async {
+      {required Level logLevel,
+      bool voiceProcessing = false,
+      InitDarwinEqualizerRequest? equalizerParams,
+      bool? setLoudSpeakerOn}) async {
     // openAudioSessionCompleter = new Completer<bool>();
     // await invokeMethod( callback, 'initializeMediaPlayer', {'focus': focus.index, 'category': category.index, 'mode': mode.index, 'audioFlags': audioFlags, 'device': device.index, 'withUI': withUI ? 1 : 0 ,},) ;
     // return  openAudioSessionCompleter.future ;

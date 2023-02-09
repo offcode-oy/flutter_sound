@@ -120,7 +120,10 @@ abstract class FlutterSoundPlayerPlatform extends PlatformInterface {
   }
 
   Future<int> openPlayer(FlutterSoundPlayerCallback callback,
-      {required Level logLevel, bool voiceProcessing = false, InitDarwinEqualizerRequest? equalizerParams}) {
+      {required Level logLevel,
+      bool voiceProcessing = false,
+      InitDarwinEqualizerRequest? equalizerParams,
+      bool? setLoudSpeakerOn}) {
     throw UnimplementedError('openPlayer() has not been implemented.');
   }
 
@@ -145,6 +148,10 @@ abstract class FlutterSoundPlayerPlatform extends PlatformInterface {
   Future<int> darwinEqualizerBandSetGain(
       FlutterSoundPlayerCallback callback, DarwinEqualizerBandSetGainRequest request) {
     throw UnimplementedError('darwinEqualizerBandSetGain() has not been implemented.');
+  }
+
+  Future<int> darwinSetloudSpeakerOn(FlutterSoundPlayerCallback callback, bool enabled) {
+    throw UnimplementedError('darwinSetloudSpeakerOn() has not been implemented.');
   }
 
   Future<int> enableEqualizer(FlutterSoundPlayerCallback callback, AudioEffectSetEnabledRequest request) {

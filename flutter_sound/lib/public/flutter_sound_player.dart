@@ -87,6 +87,7 @@ class FlutterSoundPlayer implements FlutterSoundPlayerCallback {
   /// The FlutterSoundPlayerLogger Logger getter
   Logger get logger => _logger;
   InitDarwinEqualizerRequest? darwinEqualizerParams;
+  bool? _setLoudSpeakerOn;
 
   /// Used if the App wants to dynamically change the Log Level.
   /// Seldom used. Most of the time the Log Level is specified during the constructor.
@@ -469,13 +470,21 @@ class FlutterSoundPlayer implements FlutterSoundPlayerCallback {
     darwinEqualizerParams = equalizerParams;
   }
 
-  Future<void> audioEffectSetEnabled(AudioEffectSetEnabledRequest request) async {
-    await FlutterSoundPlayerPlatform.instance.enableEqualizer(this, request);
+  Future<void> setDarwinLoudSpeakerOn(bool on) async {
+    _setLoudSpeakerOn = on;
+    // _logger.d('FS:---> setDarwinLoudSpeakerOn ');
+    // if (Platform.isIOS) {
+    //   await FlutterSoundPlayerPlatform.instance.darwinSetloudSpeakerOn(this, on);
+    // }
   }
 
-  Future<void> setEqualizerGain(DarwinEqualizerBandSetGainRequest request) async {
-    await FlutterSoundPlayerPlatform.instance.darwinEqualizerBandSetGain(this, request);
-  }
+  // Future<void> audioEffectSetEnabled(AudioEffectSetEnabledRequest request) async {
+  //   await FlutterSoundPlayerPlatform.instance.enableEqualizer(this, request);
+  // }
+
+  // Future<void> setEqualizerGain(DarwinEqualizerBandSetGainRequest request) async {
+  //   await FlutterSoundPlayerPlatform.instance.darwinEqualizerBandSetGain(this, request);
+  // }
 
   /// Open the Player.
   ///
@@ -542,6 +551,7 @@ class FlutterSoundPlayer implements FlutterSoundPlayerCallback {
         logLevel: _logLevel,
         voiceProcessing: enableVoiceProcessing,
         equalizerParams: Platform.isIOS ? darwinEqualizerParams! : null,
+        setLoudSpeakerOn: _setLoudSpeakerOn,
       );
       _playerState = PlayerState.values[state];
       //isInited = success ?  Initialized.fullyInitialized : Initialized.notInitialized;

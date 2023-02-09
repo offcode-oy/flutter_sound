@@ -111,6 +111,13 @@ class _DarwinPlatform extends DarwinPlatform {
     return await _channel.invokeMethod('enableEqualizer', request.toMap());
   }
 
+  /// Set Darwin loudspeaker on
+  @override
+  Future<int> darwinSetloudSpeakerOn(AudioEffectSetEnabledRequest request) async {
+    // debugPrint('enableEqualizer: ${request.toMap()}');
+    return await _channel.invokeMethod('darwinSetloudSpeakerOn', request.toMap());
+  }
+
   // /// Init Darwin Equalizer
   // @override
   // Future<InitDarwinEqualizerResponse> init(InitDarwinEqualizer request) async {

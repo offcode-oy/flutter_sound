@@ -166,14 +166,18 @@ class MethodChannelFlutterSoundPlayer extends FlutterSoundPlayerPlatform {
 
   @override
   Future<int> openPlayer(FlutterSoundPlayerCallback callback,
-      {required Level logLevel, bool voiceProcessing = false, InitDarwinEqualizerRequest? equalizerParams}) {
+      {required Level logLevel,
+      bool voiceProcessing = false,
+      InitDarwinEqualizerRequest? equalizerParams,
+      bool? setLoudSpeakerOn}) {
     return invokeMethod(
       callback,
       'openPlayer',
       {
         'logLevel': logLevel.index,
         'voiceProcessing': voiceProcessing,
-        'equalizerParams': equalizerParams?.toMap().cast<String, dynamic>()
+        'equalizerParams': equalizerParams?.toMap().cast<String, dynamic>(),
+        'setLoudSpeakerOn': setLoudSpeakerOn,
       },
     );
   }
@@ -184,6 +188,12 @@ class MethodChannelFlutterSoundPlayer extends FlutterSoundPlayerPlatform {
       FlutterSoundPlayerCallback callback, DarwinEqualizerBandSetGainRequest request) async {
     return await invokeMethod(callback, 'darwinEqualizerBandSetGain', request.toMap().cast());
   }
+
+  // /// Set gain for a band of the Darwin Equalizer
+  // @override
+  // Future<int> darwinSetloudSpeakerOn(FlutterSoundPlayerCallback callback, bool enabled) async {
+  //   return await invokeMethod(callback, 'darwinSetloudSpeakerOn', {"isLoudSpeaker": enabled});
+  // }
 
   /// Set Darwin Equalizer Enabled
   @override

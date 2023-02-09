@@ -96,7 +96,12 @@ extern void FlutterSoundPlayerReg(NSObject<FlutterPluginRegistrar>* registrar)
         {
             [aFlautoPlayer darwinEqualizerBandSetGain: call result: result];
         } else
-            
+        
+//        if ([@"darwinSetloudSpeakerOn" isEqualToString: call.method])
+//        {
+//            [aFlautoPlayer darwinSetloudSpeakerOn: call result: result];
+//        } else
+//            
         if ([@"openPlayer" isEqualToString:call.method])
         {
                 aFlautoPlayer = [[FlutterSoundPlayer alloc] init: call playerManager: self];
