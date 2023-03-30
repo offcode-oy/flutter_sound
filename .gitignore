@@ -2,3 +2,5 @@
 doc/_site/
 *.tgz
 extract/
+flutter_sound_web/.dart_tool/*
+flutter_sound_platform_interface/.dart_tool/*
