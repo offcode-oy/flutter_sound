@@ -20,7 +20,7 @@
 
 import 'dart:async';
 
-import 'package:logger/logger.dart' show Level , Logger;
+import 'package:logger/logger.dart' show Level;
 import 'package:flutter/services.dart';
 
 import 'flutter_sound_platform_interface.dart';
@@ -153,6 +153,7 @@ Future<dynamic>? channelMethodCallHandler(MethodCall call) {
   Future<void>?   setLogLevel(FlutterSoundRecorderCallback callback, Level logLevel)
   {
     invokeMethodVoid( callback, 'setLogLevel', {'logLevel': logLevel.index,});
+    return null;
   }
 
 
@@ -182,7 +183,7 @@ Future<dynamic>? channelMethodCallHandler(MethodCall call) {
   @override
   Future<bool> isEncoderSupported(FlutterSoundRecorderCallback callback, {Codec codec = Codec.defaultCodec,})
   {
-    return invokeMethodBool( callback, 'isEncoderSupported', {'codec': codec.index,},) as Future<bool>;
+    return invokeMethodBool( callback, 'isEncoderSupported', {'codec': codec.index,},);
   }
 
   @override

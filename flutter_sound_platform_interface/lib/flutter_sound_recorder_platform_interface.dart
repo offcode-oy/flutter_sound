@@ -18,18 +18,13 @@
  */
 
 
-import 'dart:async';
 
-import 'package:logger/logger.dart' show Level , Logger;
+import 'package:logger/logger.dart' show Level;
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'method_channel_flutter_sound_recorder.dart';
 import 'flutter_sound_platform_interface.dart';
-import 'dart:async';
-import 'dart:convert';
 import 'dart:core';
-import 'dart:io';
-import 'dart:io' show Platform;
 import 'dart:typed_data' show Uint8List;
 
 
@@ -105,7 +100,6 @@ abstract class FlutterSoundRecorderPlatform extends PlatformInterface {
 
   List<FlutterSoundRecorderCallback?> _slots = [];
 
-  @override
   int findSession(FlutterSoundRecorderCallback aSession)
   {
     for (var i = 0; i < _slots.length; ++i)
@@ -118,7 +112,6 @@ abstract class FlutterSoundRecorderPlatform extends PlatformInterface {
     return -1;
   }
 
-  @override
   void openSession(FlutterSoundRecorderCallback aSession)
   {
     assert(findSession(aSession) == -1);
@@ -134,7 +127,6 @@ abstract class FlutterSoundRecorderPlatform extends PlatformInterface {
     _slots.add(aSession);
   }
 
-  @override
   void closeSession(FlutterSoundRecorderCallback aSession)
   {
     _slots[findSession(aSession)] = null;

@@ -122,10 +122,8 @@ final exampleAudioFilePathOPUS =
 final albumArtPath =
     'https://file-examples-com.github.io/uploads/2017/10/file_example_PNG_500kB.png';
 */
-final albumArtPathRemote =
-    'https://flutter-sound.canardoux.xyz/web_example/assets/extract/3iob.png';
-final albumArtPath =
-    'https://file-examples-com.github.io/uploads/2017/10/file_example_PNG_500kB.png';
+final albumArtPathRemote = 'https://flutter-sound.canardoux.xyz/web_example/assets/extract/3iob.png';
+final albumArtPath = 'https://file-examples-com.github.io/uploads/2017/10/file_example_PNG_500kB.png';
 
 ///
 class Demo extends StatefulWidget {
@@ -258,11 +256,9 @@ class _MyAppState extends State<Demo> {
     await session.configure(AudioSessionConfiguration(
       avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
       avAudioSessionCategoryOptions:
-          AVAudioSessionCategoryOptions.allowBluetooth |
-              AVAudioSessionCategoryOptions.defaultToSpeaker,
+          AVAudioSessionCategoryOptions.allowBluetooth | AVAudioSessionCategoryOptions.defaultToSpeaker,
       avAudioSessionMode: AVAudioSessionMode.spokenAudio,
-      avAudioSessionRouteSharingPolicy:
-          AVAudioSessionRouteSharingPolicy.defaultPolicy,
+      avAudioSessionRouteSharingPolicy: AVAudioSessionRouteSharingPolicy.defaultPolicy,
       avAudioSessionSetActiveOptions: AVAudioSessionSetActiveOptions.none,
       androidAudioAttributes: const AndroidAudioAttributes(
         contentType: AndroidAudioContentType.speech,
@@ -275,8 +271,7 @@ class _MyAppState extends State<Demo> {
   }
 
   Future<void> copyAssets() async {
-    var dataBuffer =
-        (await rootBundle.load('assets/canardo.png')).buffer.asUint8List();
+    var dataBuffer = (await rootBundle.load('assets/canardo.png')).buffer.asUint8List();
     var path = '${await playerModule.getResourcePath()}/assets';
     if (!await Directory(path).exists()) {
       await Directory(path).create(recursive: true);
@@ -340,8 +335,7 @@ class _MyAppState extends State<Demo> {
       if (!kIsWeb) {
         var status = await Permission.microphone.request();
         if (status != PermissionStatus.granted) {
-          throw RecordingPermissionException(
-              'Microphone permission not granted');
+          throw RecordingPermissionException('Microphone permission not granted');
         }
       }
       var path = '';
@@ -361,11 +355,10 @@ class _MyAppState extends State<Demo> {
           }
           sink = outputFile.openWrite();
         } else {
-          sink = null; // TODO
+          sink = null;
         }
         recordingDataController = StreamController<Food>();
-        _recordingDataSubscription =
-            recordingDataController!.stream.listen((buffer) {
+        _recordingDataSubscription = recordingDataController!.stream.listen((buffer) {
           if (buffer is FoodData) {
             sink!.add(buffer.data!);
           }
@@ -389,9 +382,7 @@ class _MyAppState extends State<Demo> {
       recorderModule.logger.d('startRecorder');
 
       _recorderSubscription = recorderModule.onProgress!.listen((e) {
-        var date = DateTime.fromMillisecondsSinceEpoch(
-            e.duration.inMilliseconds,
-            isUtc: true);
+        var date = DateTime.fromMillisecondsSinceEpoch(e.duration.inMilliseconds, isUtc: true);
         var txt = DateFormat('mm:ss:SS', 'en_GB').format(date);
 
         setState(() {
@@ -454,14 +445,12 @@ class _MyAppState extends State<Demo> {
       maxDuration = e.duration.inMilliseconds.toDouble();
       if (maxDuration <= 0) maxDuration = 0.0;
 
-      sliderCurrentPosition =
-          min(e.position.inMilliseconds.toDouble(), maxDuration);
+      sliderCurrentPosition = min(e.position.inMilliseconds.toDouble(), maxDuration);
       if (sliderCurrentPosition < 0.0) {
         sliderCurrentPosition = 0.0;
       }
 
-      var date = DateTime.fromMillisecondsSinceEpoch(e.position.inMilliseconds,
-          isUtc: true);
+      var date = DateTime.fromMillisecondsSinceEpoch(e.position.inMilliseconds, isUtc: true);
       var txt = DateFormat('mm:ss:SS', 'en_GB').format(date);
       setState(() {
         _playerTxt = txt.substring(0, 8);
@@ -500,8 +489,7 @@ class _MyAppState extends State<Demo> {
     var totalLength = buffer.length;
     while (totalLength > 0 && !playerModule.isStopped) {
       var bsize = totalLength > blockSize ? blockSize : totalLength;
-      await playerModule
-          .feedFromStream(buffer.sublist(lnData, lnData + bsize)); // await !!!!
+      await playerModule.feedFromStream(buffer.sublist(lnData, lnData + bsize)); // await !!!!
       lnData += bsize;
       totalLength -= bsize;
     }
@@ -513,9 +501,7 @@ class _MyAppState extends State<Demo> {
       String? audioFilePath;
       var codec = _codec;
       if (_media == Media.asset) {
-        dataBuffer = (await rootBundle.load(assetSample[codec.index]))
-            .buffer
-            .asUint8List();
+        dataBuffer = (await rootBundle.load(assetSample[codec.index])).buffer.asUint8List();
       } else if (_media == Media.file || _media == Media.stream) {
         // Do we want to play from buffer or from file ?
         if (kIsWeb || await fileExists(_path[codec.index]!)) {
@@ -561,9 +547,7 @@ class _MyAppState extends State<Demo> {
             dataBuffer = await flutterSoundHelper.pcmToWaveBuffer(
               inputBuffer: dataBuffer,
               numChannels: 1,
-              sampleRate: (_codec == Codec.pcm16 && _media == Media.asset)
-                  ? 48000
-                  : tSAMPLERATE,
+              sampleRate: (_codec == Codec.pcm16 && _media == Media.asset) ? 48000 : tSAMPLERATE,
             );
             codec = Codec.pcm16WAV;
           }
@@ -805,9 +789,7 @@ class _MyAppState extends State<Demo> {
   }
 
   void Function()? onStopPlayerPressed() {
-    return (playerModule.isPlaying || playerModule.isPaused)
-        ? stopPlayer
-        : null;
+    return (playerModule.isPlaying || playerModule.isPaused) ? stopPlayer : null;
   }
 
   void Function()? onStartPlayerPressed() {
@@ -852,9 +834,7 @@ class _MyAppState extends State<Demo> {
     if (onStartRecorderPressed() == null) {
       return AssetImage('res/icons/ic_mic_disabled.png');
     }
-    return (recorderModule.isStopped)
-        ? AssetImage('res/icons/ic_mic.png')
-        : AssetImage('res/icons/ic_stop.png');
+    return (recorderModule.isStopped) ? AssetImage('res/icons/ic_mic.png') : AssetImage('res/icons/ic_stop.png');
   }
 
   Future<void> setCodec(Codec codec) async {
@@ -956,9 +936,8 @@ class _MyAppState extends State<Demo> {
                   //disabledColor: Colors.white,
                   //padding: EdgeInsets.all(8.0),
                   child: Image(
-                    image: AssetImage(onStartPlayerPressed() != null
-                        ? 'res/icons/ic_play.png'
-                        : 'res/icons/ic_play_disabled.png'),
+                    image: AssetImage(
+                        onStartPlayerPressed() != null ? 'res/icons/ic_play.png' : 'res/icons/ic_play_disabled.png'),
                   ),
                 ),
               ),
@@ -992,9 +971,8 @@ class _MyAppState extends State<Demo> {
                   child: Image(
                     width: 28.0,
                     height: 28.0,
-                    image: AssetImage(onStopPlayerPressed() != null
-                        ? 'res/icons/ic_stop.png'
-                        : 'res/icons/ic_stop_disabled.png'),
+                    image: AssetImage(
+                        onStopPlayerPressed() != null ? 'res/icons/ic_stop.png' : 'res/icons/ic_stop_disabled.png'),
                   ),
                 ),
               ),

@@ -20,14 +20,12 @@
 library flutter_sound;
 
 import 'dart:async';
-import 'dart:html' as html;
 
-import 'package:meta/meta.dart';
 import 'package:flutter_sound_platform_interface/flutter_sound_platform_interface.dart';
 import 'package:flutter_sound_platform_interface/flutter_sound_recorder_platform_interface.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'dart:typed_data';
-import 'package:logger/logger.dart' show Level , Logger;
+import 'package:logger/logger.dart' show Level;
 
 import 'package:js/js.dart';
 

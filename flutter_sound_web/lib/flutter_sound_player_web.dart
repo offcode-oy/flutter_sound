@@ -20,16 +20,13 @@
 library flutter_sound;
 
 import 'dart:async';
-import 'dart:html' as html;
 import 'dart:typed_data' show Uint8List;
 
-import 'package:meta/meta.dart';
 import 'package:flutter_sound_platform_interface/flutter_sound_platform_interface.dart';
 import 'package:flutter_sound_platform_interface/flutter_sound_player_platform_interface.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'dart:io';
 import 'package:js/js.dart';
-import 'package:logger/logger.dart' show Level , Logger;
+import 'package:logger/logger.dart' show Level;
 
 
 // ====================================  JS  =======================================================
@@ -326,9 +323,10 @@ class FlutterSoundPlayerWeb extends FlutterSoundPlayerPlatform //implements Flut
                 return '';
         }
 
-        @override
         Future<void>?   setLogLeve(FlutterSoundPlayerCallback callback, Level loglevel)
         {
+          return null;
+        
 
         }
 

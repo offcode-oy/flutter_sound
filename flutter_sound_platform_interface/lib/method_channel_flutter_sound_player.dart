@@ -18,15 +18,10 @@
  */
 
 
-import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:logger/logger.dart' show Level , Logger;
-import 'dart:async';
-import 'dart:convert';
+import 'package:logger/logger.dart' show Level;
 import 'dart:core';
-import 'dart:io';
-import 'dart:typed_data' show Uint8List;
 
 import 'flutter_sound_player_platform_interface.dart';
 import 'flutter_sound_platform_interface.dart';
@@ -185,6 +180,7 @@ Future<Map> invokeMethodMap (FlutterSoundPlayerCallback callback, String methodN
   Future<void>?   setLogLevel(FlutterSoundPlayerCallback callback, Level logLevel)
   {
     invokeMethod( callback, 'setLogLevel', {'logLevel': logLevel.index,});
+    return null;
   }
 
 
@@ -224,7 +220,7 @@ Future<Map> invokeMethodMap (FlutterSoundPlayerCallback callback, String methodN
   @override
   Future<bool> isDecoderSupported(FlutterSoundPlayerCallback callback, { Codec codec = Codec.defaultCodec,})
   {
-    return invokeMethodBool( callback, 'isDecoderSupported', {'codec': codec.index,},) as Future<bool>;
+    return invokeMethodBool( callback, 'isDecoderSupported', {'codec': codec.index,},);
   }
 
 
