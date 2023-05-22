@@ -54,7 +54,7 @@ dependencies {
     // DO NOT INCLUDE THE FOLLOWING LINE IN A REAL APP !!!
     //implementation project(':flutter_sound_core') // This is used if local path is used
     // implementation 'com.github.canardoux:flutter_sound_core:9.2.13' // This is the original implementation
-    implementation 'com.github:offcode-oy/flutter_sound_core:library:developer' // This is the new implementation
+    implementation 'com.github:offcode-oy/flutter_sound_core:developer' // This is the new implementation
     // -------------------------------------------------------------------------------------
 
 }
