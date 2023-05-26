@@ -1,4 +1,5 @@
-## 9.2.13
+## 9.2.14
 
-- ## The [CHANGELOG file is here](https://flutter-sound.canardoux.xyz/changelog.html)
-
+-   Update version number to 9.2.14 (core)
+-   Update libs
+-   Clear codebase
