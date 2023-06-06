@@ -23,7 +23,7 @@
 
 #import "FlutterSoundPlayer.h"
 #import <AVFoundation/AVFoundation.h>
-#import <flutter_sound_core/FlautoPlayer.h>
+#import <flutter_sound_core_offcode/FlautoPlayer.h>
 #import "FlutterSoundPlayerManager.h"
          
  

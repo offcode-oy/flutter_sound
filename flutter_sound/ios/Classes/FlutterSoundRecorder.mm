@@ -30,7 +30,7 @@
 #import <Foundation/Foundation.h>
 
 #import "FlutterSoundRecorder.h"
-#import <flutter_sound_core/FlautoRecorder.h>
+#import <flutter_sound_core_offcode/FlautoRecorder.h>
 
 
 @implementation FlutterSoundRecorder

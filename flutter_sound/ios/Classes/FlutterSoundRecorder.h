@@ -32,8 +32,8 @@
 #import <Flutter/Flutter.h>
 #import <AVFoundation/AVFoundation.h>
 #import "FlutterSoundRecorderManager.h"
-#import <flutter_sound_core/Flauto.h>
-#import <flutter_sound_core/FlautoRecorder.h>
+#import <flutter_sound_core_offcode/Flauto.h>
+#import <flutter_sound_core_offcode/FlautoRecorder.h>
 
 
 @interface FlutterSoundRecorder  : Session<FlautoRecorderCallback>
