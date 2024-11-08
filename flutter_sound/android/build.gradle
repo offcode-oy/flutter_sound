@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath 'com.android.tools.build:gradle:8.7.2'
     }
 }
 
@@ -25,17 +25,17 @@ apply plugin: 'com.android.library'
 
 android {
     namespace 'com.dooboolab.fluttersound'
-    compileSdkVersion 30
+    compileSdk 34
 
     defaultConfig {
-        minSdkVersion 18 // 18 works fine for the player, but the recorder needs at least 24
+        minSdkVersion 24
     }
     lintOptions {
         disable 'InvalidPackage'
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
 }
 
